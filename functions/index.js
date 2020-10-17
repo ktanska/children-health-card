@@ -4,7 +4,6 @@ const engines = require('consolidate');
 var hbs = require('handlebars');
 const admin = require('firebase-admin');
 
-
 const app = express();
 app.engine('hbs',engines.handlebars);
 app.set('views','./views');
@@ -15,6 +14,7 @@ admin.initializeApp({
 credential: admin.credential.cert(serviceAccount),
 databaseURL: "firebase-adminsdk-ncwgz@children-health-card.iam.gserviceaccount.com"
 });
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //

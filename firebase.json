@@ -13,8 +13,12 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "/index",
         "destination": "/index.html"
+      },
+      {
+        "source": "/add-child",
+        "destination": "/add-child.html"
       }
     ]
   }
