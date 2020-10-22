@@ -20,6 +20,13 @@
         "source": "/add-child",
         "destination": "/add-child.html"
       }
-    ]
+    ],
+    "headers": [ {
+      "source": "**/*.@(eot|otf|ttf|ttc|woff|style.css)",
+      "headers": [ {
+        "key": "Access-Control-Allow-Origin",
+        "value": "*"
+      } ]
+    } ]
   }
 }

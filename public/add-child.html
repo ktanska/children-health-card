@@ -3,13 +3,13 @@
 <head>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="../functions/add-child.js"></script>
     <meta charset="UTF-8">
     <title>Dodanie nowego dziecka</title>
 </head>
 <body>
-<script src="../functions/add-child.js"></script>
-<div>
 <form id="addChildForm">
     <label class="" for="name">Imię: </label>
     <input type="text" label="name" id="name" required>
@@ -23,11 +23,12 @@
     <input type="text" label="height" id="height" required>
     <label class="" for="birth">Data urodzenia: </label>
     <input type="date" label="birth" id="birth" required>
-    <input type="submit" sendChildData()></input>
+    <input type="submit" onclick="sendChildData()"/>
 </form>
-</div>
 </body>
 <script>
+function sendChildData() {
 
+}
 </script>
 </html>
