@@ -17,15 +17,19 @@ var submitData = function() {
     var weight = $('#weight').val();
     var height = $('#height').val();
     var birth = $('#birth').val();
+    var userId = firebase.auth().currentUser.uid;
+    var ref = firebase.database().ref('Children/');
+    var idRef = ref.child(userId);
+    var newRef = idRef.child(name);
 
-    childData.push({
-        "name": name,
-        "surname": surname,
-        "pesel": pesel,
-        "weight": weight,
-        "height": height,
-        "birth": birth
-        });
+       newRef.set({
+        name: name,
+        surname: surname,
+        weight: weight,
+        height: height,
+        date: birth,
+        pesel: pesel
+    });
 }
 
 $(window).load(function () {
