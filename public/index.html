@@ -1,42 +1,79 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <title>Logowanie</title>
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="styleLogowanie.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Autoryzacja</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styleLogowanie.css">
 </head>
+
 <body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6 offset-3 shadow rounded panel">
+                <div id="authHeader" class="row align-items-center text-center header">
+                    <div class="col-6"><span id="loginHeaderBtn" class="active">Zaloguj</span></div>
+                    <div class="col-6"><span id="registerHeaderBtn">Zarejestruj</span></div>
+                </div>
+                <div id="dashboardHeader" class="row align-items-center text-center header">
+                    <div class="col">Children health card</div>
+                </div>
+                <div id="content">
+                    <div id="messageAlert" class="alert alert-danger" role="alert"></div>
+                    <div id="loginView">
+                        <form>
+                            <div class="form-group">
+                                <label for="loginMailInput">Adres E-mail</label>
+                                <input type="email" class="form-control" id="loginMailInput"
+                                    aria-describedby="emailHelp" placeholder="Podaj adres E-mail">
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPasswordInput">Hasło</label>
+                                <input type="password" class="form-control" id="loginPasswordInput"
+                                    placeholder="Podaj hasło">
+                            </div>
+                            <button type="submit" id="loginBtn" class="btn btn-primary mb-3 animation">Zaloguj</button>
+                        </form>
+                    </div>
+                    <div id="registerView">
+                        <form>
+                            <div class="form-group">
+                                <label for="registerMailInput">Adres E-mail</label>
+                                <input type="email" class="form-control" id="registerMailInput"
+                                    aria-describedby="emailHelp" placeholder="Podaj adres E-mail">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPasswordInput">Hasło</label>
+                                <input type="password" class="form-control" id="registerPasswordInput"
+                                    placeholder="Podaj hasło">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerRepeatPasswordInput">Powtórz hasło</label>
+                                <input type="password" class="form-control" id="registerRepeatPasswordInput"
+                                    placeholder="Podaj jeszcze raz hasło">
+                            </div>
+                            <button type="submit" id="registerBtn"
+                                class="btn btn-primary mb-3 animation">Zarejestruj</button>
+                        </form>
+                    </div>
+                            <div class="dashboard-item">
+                                <button type="button" id="dashboardSignOutBtn"
+                                    class="btn btn-outline-danger animation">Wyloguj</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <div id="login_div" class="main-div">
-    <h3>Logowanie</h3>
-    <input type="email" placeholder="Email..." id="email_field" />
-    <input type="password" placeholder="Hasło..." id="password_field" />
-
-    <button onclick="login()">Zaloguj</button>
-  </div>
-
-  <div id="user_div" class="loggedin-div">
-    <h3>Witaj!</h3>
-    <p id="user_para">Witaj, udało Ci się poprawnie zalogować.</p>
-    <button onclick="logout()">Wyloguj</button>
-    <button onClick="parent.location='add-child.html'">Dodaj dziecko</button>
-  </div>
-
-
-
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDVcEdnG5MIp0n3i6WwKdLX84ns6qqYH5M",
-      authDomain: "fir-web-login-8b7c5.firebaseapp.com",
-      databaseURL: "https://fir-web-login-8b7c5.firebaseio.com",
-      projectId: "fir-web-login-8b7c5",
-      storageBucket: "fir-web-login-8b7c5.appspot.com",
-      messagingSenderId: "301701306998"
-    };
-    firebase.initializeApp(config);
-  </script>
-  <script src="index.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-index.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+    <script src="index.js"></script>
 </body>
+
 </html>
