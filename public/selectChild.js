@@ -1,0 +1,13 @@
+$(document).ready(function()
+{
+	$("#button-show-panel").click(function(){
+		$('#panel').show().animate({"right":"+=300px"},200);
+		$("#button-hide-panel").show();
+		$("#button-show-panel").hide();
+	});
+	$("#button-hide-panel").click(function(){
+		$('#panel').animate({"right":"-=300px"},200);
+		$("#button-hide-panel").hide();
+		$("#button-show-panel").show();
+	});
+});
