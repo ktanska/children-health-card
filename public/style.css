@@ -1,5 +1,5 @@
 body {
-  background: #fff;
+  background: #5c969e;
   padding: 0px;
   margin: 0px;
   font-family: 'Nunito', sans-serif;
@@ -38,7 +38,7 @@ input, button {
 }
 
 .main-div button, .loggedin-div button {
-  background: #5d8ffc;
+  background: #3d7ea6;
   color: #fff;
   border: 1px solid #5d8ffc;
   border-radius: 5px;
