@@ -6,6 +6,9 @@ body{
 
 }
 #panel {
+  padding:75px;
+  text-align:left;
+  font-family: 'Oswald', sans-serif;
    display:none;
    width:300px;
    height:100%;
@@ -14,13 +17,11 @@ body{
    z-index:1000;
    top:0;
    right:-300px;
-   background-color:#f7f7f7;
+   background-color:#3d7ea6;
 }
 
-#button-hide-panel {
-  display:none;
-  background-color:#3d7ea6;
-}
+#button-hide-panel {display:none;}
+
 .btn{
   color:#999;
   background:rgba(0, 0, 0, 0.5);
