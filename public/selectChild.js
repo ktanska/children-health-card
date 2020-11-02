@@ -53,8 +53,9 @@ function searchChild() {
                       node.appendChild(aNode);
                       element.appendChild(node);
                       aNode.addEventListener( 'click', function(){
-                        var query = "?childName=" + key;
-                        window.location.href = "info-child.html" + query;
+                        //var query = "?childName=" + key;
+                        //window.location.href = "info-child.html" + query;
+                        getInfo(key);
                       });
                       console.log(key);
                   });
@@ -63,6 +64,48 @@ function searchChild() {
                 console.log('No user is signed in.');
             }
         });
+}
+function getInfo(childName) {
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log(user);
+        user = firebase.auth().currentUser;
+        firebase.database().ref('Children/' + user.uid + '/' + childName).once('value').then(function(snapshot) {
+            var height = document.createElement("p");
+            var date = document.createElement("p");
+            var name = document.createElement("p");
+            var surname = document.createElement("p");
+            var pesel = document.createElement("p");
+            var weight = document.createElement("p");
+            var heightNode = document.createTextNode("Wzrost: " + snapshot.val().height);
+            var weightNode = document.createTextNode("Waga: " + snapshot.val().weight);
+            var peselNode = document.createTextNode("PESEL: " + snapshot.val().pesel);
+            var nameNode = document.createTextNode("Imię: " + snapshot.val().name);
+            var surnameNode = document.createTextNode("Nazwisko: " + snapshot.val().surname);
+            var dateNode = document.createTextNode("Data urodzenia: " + snapshot.val().date);
+
+            height.appendChild(heightNode);
+            weight.appendChild(weightNode);
+            pesel.appendChild(peselNode);
+            name.appendChild(nameNode);
+            surname.appendChild(surnameNode);
+            date.appendChild(dateNode);
+
+            var element = document.getElementById("div1");
+             while (element.hasChildNodes()) {
+                element.removeChild(element.childNodes[0]);
+              }
+            element.appendChild(name);
+            element.appendChild(surname);
+            element.appendChild(pesel);
+            element.appendChild(date);
+            element.appendChild(weight);
+            element.appendChild(height);
+        });
+    } else {
+        console.log('No user is signed in.');
+    }
+});
 }
 
 
