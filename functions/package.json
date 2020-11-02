@@ -12,7 +12,7 @@
   "engines": {
     "node": "10"
   },
-  "main": "index.js",
+  "main": "../public/index.js",
   "dependencies": {
     "consolidate": "^0.16.0",
     "express": "^4.17.1",

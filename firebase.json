@@ -19,6 +19,10 @@
       {
         "source": "/add-child",
         "destination": "/add-child.html"
+      },
+      {
+        "source": "/info-child",
+        "destination": "/info-child.html"
       }
     ],
     "headers": [ {

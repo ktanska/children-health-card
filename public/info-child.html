@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <base href="/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <meta charset="UTF-8">
+    <title>Strona dziecka</title>
+</head>
+<body>
+<h3>Ogólne informacje o dziecku</h3>
+<div id="div1"></div>
+
+</body>
+<script>
+var config = {
+  apiKey: "AIzaSyDVcEdnG5MIp0n3i6WwKdLX84ns6qqYH5M",
+  authDomain: "children-health-card.firebaseio.com",
+  databaseURL: "https://children-health-card.firebaseio.com",
+  projectId: "children-health-card",
+  storageBucket: "children-health-card.appspot.com",
+  messagingSenderId: "933681429514"
+};
+firebase.initializeApp(config);
+
+var user;
+
+var query = decodeURIComponent(window.location.search);
+query = query.substring(1);
+var queries = query.split("&");
+for (var i = 0; i < queries.length; i++) {
+    var childName = queries[i].split("=");
+}
+console.log(childName[1])
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log(user);
+        user = firebase.auth().currentUser;
+        firebase.database().ref('Children/' + user.uid + '/' + childName[1]).once('value').then(function(snapshot) {
+            var height = document.createElement("p");
+            var date = document.createElement("p");
+            var name = document.createElement("p");
+            var surname = document.createElement("p");
+            var pesel = document.createElement("p");
+            var weight = document.createElement("p");
+            var heightNode = document.createTextNode("Wzrost: " + snapshot.val().height);
+            var weightNode = document.createTextNode("Waga: " + snapshot.val().weight);
+            var peselNode = document.createTextNode("PESEL: " + snapshot.val().pesel);
+            var nameNode = document.createTextNode("Imię: " + snapshot.val().name);
+            var surnameNode = document.createTextNode("Nazwisko: " + snapshot.val().surname);
+            var dateNode = document.createTextNode("Data urodzenia: " + snapshot.val().date);
+
+            height.appendChild(heightNode);
+            weight.appendChild(weightNode);
+            pesel.appendChild(peselNode);
+            name.appendChild(nameNode);
+            surname.appendChild(surnameNode);
+            date.appendChild(dateNode);
+
+            var element = document.getElementById("div1");
+            element.appendChild(name);
+            element.appendChild(surname);
+            element.appendChild(pesel);
+            element.appendChild(date);
+            element.appendChild(weight);
+            element.appendChild(height);
+        });
+    } else {
+        console.log('No user is signed in.');
+    }
+});
+
+</script>
+</html>
