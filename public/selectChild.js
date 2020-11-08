@@ -92,6 +92,24 @@ firebase.auth().onAuthStateChanged(function(user) {
             date.appendChild(dateNode);
 
             var element = document.getElementById("div1");
+            var elementMenu = document.getElementById("div2");
+
+             var node = document.createElement("h1");
+             while (elementMenu.hasChildNodes()) {
+                    elementMenu.removeChild(elementMenu.childNodes[0]);
+             }
+             var nameNode = document.createTextNode("Edytuj dane");
+             var aNode = document.createElement("a");
+             aNode.className = "btn";
+             aNode.appendChild(nameNode);
+
+             node.appendChild(aNode);
+             elementMenu.appendChild(node);
+             aNode.addEventListener( 'click', function(){
+                var query = "?editChildData=" + childName;
+                window.location.href = "editChild.html" + query;
+             });
+
              while (element.hasChildNodes()) {
                 element.removeChild(element.childNodes[0]);
               }

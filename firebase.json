@@ -23,6 +23,10 @@
       {
         "source": "/info-child",
         "destination": "/info-child.html"
+      },
+      {
+        "source": "/editChild",
+        "destination": "/editChild.html"
       }
     ],
     "headers": [ {
