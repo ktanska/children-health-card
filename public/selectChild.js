@@ -94,20 +94,61 @@ firebase.auth().onAuthStateChanged(function(user) {
             var element = document.getElementById("div1");
             var elementMenu = document.getElementById("div2");
 
-             var node = document.createElement("h1");
              while (elementMenu.hasChildNodes()) {
                     elementMenu.removeChild(elementMenu.childNodes[0]);
              }
-             var nameNode = document.createTextNode("Edytuj dane");
+             //edycja danych dziecka
              var aNode = document.createElement("a");
+             aNode.innerHTML = "Edytuj dane";
              aNode.className = "btn";
-             aNode.appendChild(nameNode);
+             elementMenu.appendChild(aNode);
 
-             node.appendChild(aNode);
-             elementMenu.appendChild(node);
              aNode.addEventListener( 'click', function(){
                 var query = "?editChildData=" + childName;
                 window.location.href = "editChild.html" + query;
+             });
+               // lista uczulen
+               //DONE
+             var alNode = document.createElement("a");
+             alNode.innerHTML = "Alergie";
+             alNode.className = "btn";
+             elementMenu.appendChild(alNode);
+
+             alNode.addEventListener( 'click', function(){
+                 var query = "?allegryList=" + childName;
+                 window.location.href = "someList.html" + query;
+             });
+                // lista chorób
+             var vNode = document.createElement("a");
+             vNode.innerHTML = "Lista chorób";
+             vNode.className = "btn";
+             elementMenu.appendChild(vNode);
+
+             vNode.addEventListener( 'click', function(){
+                var query = "?vaccineList=" + childName;
+                window.location.href = "someList.html" + query;
+             });
+//                // lista chorob
+//             var viNode = document.createElement("a");
+//             viNode.innerHTML = "Lista chorób"
+//             viNode.className = "btn";
+//             elementMenu.appendChild(viNode);
+//
+//             viNode.addEventListener( 'click', function(){
+//                var query = "?vaccinationsList=" + childName;
+//                window.location.href = "someList.html" + query;
+//             });
+
+             // lista lekow
+             //DONE
+             var oNode = document.createElement("a");
+             oNode.innerHTML = "Leki"
+             oNode.className = "btn";
+             elementMenu.appendChild(oNode);
+
+             oNode.addEventListener( 'click', function(){
+                var query = "?medicineList=" + childName;
+                window.location.href = "somelist.html" + query;
              });
 
              while (element.hasChildNodes()) {
