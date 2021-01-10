@@ -325,7 +325,67 @@ var query = decodeURIComponent(window.location.search);
                   };
                 }
         if (listKind == "operationList") {
-           document.getElementById("vaccineItem").style.visibility = "visible";
+           var aForm = document.createElement("form");
+         var dateName = document.createElement("input");
+         var noteName = document.createElement("input");
+         var doctorName = document.createElement("input");
+
+         dateName.style.display = "block";
+         noteName.style.display = "block";
+         doctorName.style.display = "block";
+         dateName.setAttribute('type', 'text');
+         dateName.setAttribute('label', 'dateName');
+         dateName.setAttribute('id', 'dateName');
+         dateNameLabel = document.createElement("label");
+         dateNameLabel.setAttribute('for', 'dateName');
+         dateNameLabel.innerHTML = "Data:";
+
+         noteName.setAttribute('type', 'text');
+         noteName.setAttribute('label', 'noteName');
+         noteName.setAttribute('id', 'noteName');
+         noteNameLabel = document.createElement("label");
+         noteNameLabel.setAttribute('for', 'noteName');
+         noteNameLabel.innerHTML = "Notatka:";
+
+         doctorName.setAttribute('type', 'text');
+          doctorName.setAttribute('label', 'doctorName');
+          doctorName.setAttribute('id', 'doctorName');
+          doctorNameLabel = document.createElement("label");
+          doctorNameLabel.setAttribute('for', 'doctorName');
+          doctorNameLabel.innerHTML = "Lekarz:";
+
+         s = document.createElement("input");
+         s.setAttribute('type',"submit");
+         s.setAttribute('value',"Prześlij");
+         s.style.display = "block";
+
+         aForm.appendChild(dateNameLabel);
+         aForm.appendChild(dateName);
+         aForm.appendChild(noteNameLabel);
+         aForm.appendChild(noteName);
+         aForm.appendChild(doctorNameLabel);
+         aForm.appendChild(doctorName);
+
+         aForm.appendChild(s);
+         document.getElementById('formItem').appendChild(aForm);
+
+         s.onclick = function(){
+         var nameName = $('#noteName').val();
+              if (nameName) {
+              var dateName = $('#dateName').val();
+              var doctorName = $('#doctorName').val();
+              console.log(childName);
+              var userId = firebase.auth().currentUser.uid;
+              var ref = firebase.database().ref('Children/' + userId + '/' + childName + '/Operations');
+              var newRef = ref.child(nameName);
+              newRef.set({
+                  note: nameName,
+                  date: dateName,
+                  doctor: doctorName,
+                  nameChild: childName
+              });
+              }
+         };
         }
      });
 
@@ -508,4 +568,38 @@ var query = decodeURIComponent(window.location.search);
                           }
                       });
                       }
+   if (listKind == "operationList") {
+       firebase.auth().onAuthStateChanged(function(user) {
+           if (user) {
+               user = firebase.auth().currentUser;
+              var query = firebase.database().ref('Children/' + user.uid + '/' + childName + '/Operations').orderByKey();
+               query.once("value")
+                 .then(function(snapshot) {
+                     snapshot.forEach(function(childSnapshot) {
+                     var key = childSnapshot.key;
+                     var childData = childSnapshot.val();
+                     console.log(key);
+                     console.log(childData);
+               var operationDate = document.createElement("p");
+               var operationNote = document.createElement("p");
+               var operationDoctor = document.createElement("p");
+               var operationDateNode = document.createTextNode("Data: " + childSnapshot.val().date);
+               var operationNoteNode = document.createTextNode("Rodzaj zabiegu: " + childSnapshot.val().note);
+               var operationDoctorNode = document.createTextNode("Lekarz: " + childSnapshot.val().doctor);
+               operationDate.appendChild(operationDateNode);
+               operationNote.appendChild(operationNoteNode);
+               operationDoctor.appendChild(operationDoctorNode);
+
+               var element = document.getElementById("div1");
+
+              element.appendChild(operationDate);
+              element.appendChild(operationNote);
+              element.appendChild(operationDoctor);
+                       });
+                      });
+                       } else {
+                           console.log('No user is signed in.');
+                       }
+                   });
+                   }
 

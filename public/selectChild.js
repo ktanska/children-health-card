@@ -118,6 +118,17 @@ firebase.auth().onAuthStateChanged(function(user) {
                  var query = "?allegryList=" + childName;
                  window.location.href = "someList.html" + query;
              });
+              // lista operacji
+                            //DONE
+              var alNode = document.createElement("a");
+              alNode.innerHTML = "Operacje i zabiegi";
+              alNode.className = "btn";
+              elementMenu.appendChild(alNode);
+
+              alNode.addEventListener( 'click', function(){
+                  var query = "?operationList=" + childName;
+                  window.location.href = "someList.html" + query;
+              });
                 // lista szczepien
                 // DONE
              var vNode = document.createElement("a");
