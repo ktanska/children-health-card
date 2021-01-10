@@ -118,9 +118,10 @@ firebase.auth().onAuthStateChanged(function(user) {
                  var query = "?allegryList=" + childName;
                  window.location.href = "someList.html" + query;
              });
-                // lista chorób
+                // lista szczepien
+                // DONE
              var vNode = document.createElement("a");
-             vNode.innerHTML = "Lista chorób";
+             vNode.innerHTML = "Lista szczepień";
              vNode.className = "btn";
              elementMenu.appendChild(vNode);
 
@@ -128,16 +129,17 @@ firebase.auth().onAuthStateChanged(function(user) {
                 var query = "?vaccineList=" + childName;
                 window.location.href = "someList.html" + query;
              });
-//                // lista chorob
-//             var viNode = document.createElement("a");
-//             viNode.innerHTML = "Lista chorób"
-//             viNode.className = "btn";
-//             elementMenu.appendChild(viNode);
-//
-//             viNode.addEventListener( 'click', function(){
-//                var query = "?vaccinationsList=" + childName;
-//                window.location.href = "someList.html" + query;
-//             });
+                // lista wizyt u lekarza
+                // DONE
+             var viNode = document.createElement("a");
+             viNode.innerHTML = "Lista wizyt lekarskich"
+             viNode.className = "btn";
+             elementMenu.appendChild(viNode);
+
+             viNode.addEventListener( 'click', function(){
+                var query = "?visitsList=" + childName;
+                window.location.href = "someList.html" + query;
+             });
 
              // lista lekow
              //DONE

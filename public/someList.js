@@ -209,7 +209,7 @@ var query = decodeURIComponent(window.location.search);
           typeName.setAttribute('id', 'typeName');
           typeNameLabel = document.createElement("label");
           typeNameLabel.setAttribute('for', 'typeName');
-          typeNameLabel.innerHTML = "Nazwa leku:";
+          typeNameLabel.innerHTML = "Nazwa:";
 
           s = document.createElement("input");
           s.setAttribute('type',"submit");
@@ -248,6 +248,82 @@ var query = decodeURIComponent(window.location.search);
                }
           };
         }
+        if (listKind == "visitsList") {
+                  var aForm = document.createElement("form");
+                  var dateName = document.createElement("input");
+                  var noteName = document.createElement("input");
+                  var typeName = document.createElement("input");
+                  var doctorName = document.createElement("input");
+
+                  dateName.style.display = "block";
+                  noteName.style.display = "block";
+                  typeName.style.display = "block";
+                  doctorName.style.display = "block";
+                  dateName.setAttribute('type', 'text');
+                  dateName.setAttribute('label', 'dateName');
+                  dateName.setAttribute('id', 'dateName');
+                  dateNameLabel = document.createElement("label");
+                  dateNameLabel.setAttribute('for', 'dateName');
+                  dateNameLabel.innerHTML = "Data:";
+
+                  noteName.setAttribute('type', 'text');
+                  noteName.setAttribute('label', 'noteName');
+                  noteName.setAttribute('id', 'noteName');
+                  noteNameLabel = document.createElement("label");
+                  noteNameLabel.setAttribute('for', 'noteName');
+                  noteNameLabel.innerHTML = "Notatka:";
+
+                  typeName.setAttribute('type', 'text');
+                  typeName.setAttribute('label', 'typeName');
+                  typeName.setAttribute('id', 'typeName');
+                  typeNameLabel = document.createElement("label");
+                  typeNameLabel.setAttribute('for', 'typeName');
+                  typeNameLabel.innerHTML = "Rodzaj wizyty:";
+
+                  doctorName.setAttribute('type', 'text');
+                  doctorName.setAttribute('label', 'doctorName');
+                  doctorName.setAttribute('id', 'doctorName');
+                  doctorNameLabel = document.createElement("label");
+                  doctorNameLabel.setAttribute('for', 'doctorName');
+                  doctorNameLabel.innerHTML = "Nazwisko lekarza:";
+
+                  s = document.createElement("input");
+                  s.setAttribute('type',"submit");
+                  s.setAttribute('value',"Prześlij");
+                  s.style.display = "block";
+
+                  aForm.appendChild(doctorNameLabel);
+                  aForm.appendChild(doctorName);
+                  aForm.appendChild(dateNameLabel);
+                  aForm.appendChild(dateName);
+                  aForm.appendChild(noteNameLabel);
+                  aForm.appendChild(noteName);
+                  aForm.appendChild(typeNameLabel);
+                  aForm.appendChild(typeName);
+
+                  aForm.appendChild(s);
+                  document.getElementById('formItem').appendChild(aForm);
+
+                  s.onclick = function(){
+                  var nameName = $('#doctorName').val();
+                       if (nameName) {
+                       var dateName = $('#dateName').val();
+                       var noteName = $('#noteName').val();
+                       var typeName = $('#typeName').val();
+                       console.log(childName);
+                       var userId = firebase.auth().currentUser.uid;
+                       var ref = firebase.database().ref('Children/' + userId + '/' + childName + '/Visits');
+                       var newRef = ref.child(typeName);
+                       newRef.set({
+                           name: nameName,
+                           date: dateName,
+                           nameChild: childName,
+                           note: noteName,
+                           type: typeName
+                       });
+                       }
+                  };
+                }
         if (listKind == "operationList") {
            document.getElementById("vaccineItem").style.visibility = "visible";
         }
@@ -305,7 +381,7 @@ var query = decodeURIComponent(window.location.search);
                 var vaccineName = document.createElement("p");
                 var dose = document.createElement("p");
                 var datet = document.createElement("p");
-                var vaccineNameNode = document.createTextNode("Nazwa leku: " + childSnapshot.val().vaccinationName);
+                var vaccineNameNode = document.createTextNode("Nazwa: " + childSnapshot.val().vaccinationName);
                 var doseNode = document.createTextNode("Choroba: " + childSnapshot.val().vaccinationType);
                 var dateNode = document.createTextNode("Data: " + childSnapshot.val().vaccinationDate);
 
@@ -394,3 +470,42 @@ var query = decodeURIComponent(window.location.search);
                          }
                      });
                      }
+  if (listKind == "visitsList") {
+          firebase.auth().onAuthStateChanged(function(user) {
+              if (user) {
+                  user = firebase.auth().currentUser;
+                 var query = firebase.database().ref('Children/' + user.uid + '/' + childName + '/Visits').orderByKey();
+                  query.once("value")
+                    .then(function(snapshot) {
+                        snapshot.forEach(function(childSnapshot) {
+                        var key = childSnapshot.key;
+                        var childData = childSnapshot.val();
+                        console.log(key);
+                        console.log(childData);
+                  var visitDoctor = document.createElement("p");
+                  var visitDate = document.createElement("p");
+                  var visitNote = document.createElement("p");
+                  var visitType = document.createElement("p");
+                  var visitDoctorNode = document.createTextNode("Lekarz: " + childSnapshot.val().name);
+                  var visitDateNode = document.createTextNode("Data: " + childSnapshot.val().date);
+                  var visitNoteNode = document.createTextNode("Notka: " + childSnapshot.val().note);
+                  var visitTypeNode = document.createTextNode("Typ wizyty: " + childSnapshot.val().type);
+                  visitDoctor.appendChild(visitDoctorNode);
+                  visitDate.appendChild(visitDateNode);
+                  visitNote.appendChild(visitNoteNode);
+                  visitType.appendChild(visitTypeNode);
+
+                  var element = document.getElementById("div1");
+
+                 element.appendChild(visitDoctor);
+                 element.appendChild(visitDate);
+                 element.appendChild(visitNote);
+                 element.appendChild(visitType);
+                          });
+                         });
+                          } else {
+                              console.log('No user is signed in.');
+                          }
+                      });
+                      }
+
