@@ -27,6 +27,10 @@
       {
         "source": "/editChild",
         "destination": "/editChild.html"
+      },
+      {
+        "source": "/contacts",
+        "destination": "/contacts.html"
       }
     ],
     "headers": [ {

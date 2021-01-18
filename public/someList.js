@@ -10,7 +10,7 @@ firebase.initializeApp(config);
 var s;
 var childName
 
-var query = decodeURIComponent(window.location.search);
+    var query = decodeURIComponent(window.location.search);
     query = query.substring(1);
     var queries = query.split("&");
     for (var i = 0; i < queries.length; i++) {
