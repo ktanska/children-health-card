@@ -44,6 +44,7 @@ function searchChild() {
                     snapshot.forEach(function(childSnapshot) {
                       var key = childSnapshot.key;
                       var childData = childSnapshot.val();
+                      if (key != "Contacts"){
                       var node = document.createElement("h1");
                       var nameNode = document.createTextNode(key);
                       var aNode = document.createElement("a");
@@ -58,6 +59,7 @@ function searchChild() {
                         getInfo(key);
                       });
                       console.log(key);
+                      }
                   });
                 });
             } else {
