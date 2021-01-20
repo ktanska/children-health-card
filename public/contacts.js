@@ -62,6 +62,7 @@ firebase.initializeApp(config);
          s.setAttribute('type',"submit");
          s.setAttribute('value',"Prześlij");
          s.style.display = "block";
+         s.className = "btn";
 
          aForm.appendChild(alNameLabel);
          aForm.appendChild(alName);
@@ -103,7 +104,7 @@ firebase.auth().onAuthStateChanged(function(user) {
              snapshot.forEach(function(childSnapshot) {
              var key = childSnapshot.key;
              var childData = childSnapshot.val();
-       var doctorName = document.createElement("p");
+       var doctorName = document.createElement("b");
        var doctorNumber = document.createElement("p");
        var doctorType = document.createElement("p");
        var doctorAddress = document.createElement("p");

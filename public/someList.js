@@ -67,6 +67,7 @@ var childName
             s.setAttribute('type',"submit");
             s.setAttribute('value',"Prześlij");
             s.style.display = "block";
+            s.className = "btn-submit";
 
             aForm.appendChild(alNameLabel);
             aForm.appendChild(alName);
@@ -139,6 +140,7 @@ var childName
             s.setAttribute('type',"submit");
             s.setAttribute('value',"Prześlij");
             s.style.display = "block";
+            s.className = "btn-submit";
 
             aForm.appendChild(dosageNameLabel);
             aForm.appendChild(dosageName);
@@ -215,6 +217,7 @@ var childName
           s.setAttribute('type',"submit");
           s.setAttribute('value',"Prześlij");
           s.style.display = "block";
+          s.className = "btn-submit";
 
           aForm.appendChild(nameNameLabel);
           aForm.appendChild(nameName);
@@ -291,6 +294,7 @@ var childName
                   s.setAttribute('type',"submit");
                   s.setAttribute('value',"Prześlij");
                   s.style.display = "block";
+                  s.className = "btn-submit";
 
                   aForm.appendChild(doctorNameLabel);
                   aForm.appendChild(doctorName);
@@ -358,6 +362,7 @@ var childName
          s.setAttribute('type',"submit");
          s.setAttribute('value',"Prześlij");
          s.style.display = "block";
+         s.className = "btn-submit";
 
          aForm.appendChild(dateNameLabel);
          aForm.appendChild(dateName);
@@ -401,7 +406,7 @@ var childName
                           var childData = childSnapshot.val();
                           console.log(key);
                           console.log(childData);
-                    var allergyName = document.createElement("p");
+                    var allergyName = document.createElement("b");
                     var symptom = document.createElement("p");
                     var note = document.createElement("p");
                     var allergyNameNode = document.createTextNode("Nazwa czynnika uczulającego: " + childSnapshot.val().allergens);
@@ -438,7 +443,7 @@ var childName
                       var childData = childSnapshot.val();
                       console.log(key);
                       console.log(childData);
-                var vaccineName = document.createElement("p");
+                var vaccineName = document.createElement("b");
                 var dose = document.createElement("p");
                 var datet = document.createElement("p");
                 var vaccineNameNode = document.createTextNode("Nazwa: " + childSnapshot.val().vaccinationName);
@@ -473,7 +478,7 @@ var childName
                           var childData = childSnapshot.val();
                           console.log(key);
                           console.log(childData);
-                    var doctorName = document.createElement("p");
+                    var doctorName = document.createElement("b");
                     var visitDate = document.createElement("p");
                     var doctorNameNode = document.createTextNode("Wizyta u lekarza: " + childSnapshot.val().doctorName);
                     var visitDateNode = document.createTextNode("Data: " + childSnapshot.val().visitDate);
@@ -504,7 +509,7 @@ var childName
                        var childData = childSnapshot.val();
                        console.log(key);
                        console.log(childData);
-                 var medicineName = document.createElement("p");
+                 var medicineName = document.createElement("b");
                  var medicineDosage = document.createElement("p");
                  var medicineNote = document.createElement("p");
                  var medicineReason = document.createElement("p");
@@ -512,6 +517,7 @@ var childName
                  var medicineDosageNode = document.createTextNode("Dawka: " + childSnapshot.val().dosage);
                  var medicineNoteNode = document.createTextNode("Notka: " + childSnapshot.val().note);
                  var medicineReasonNode = document.createTextNode("Przyczyna: " + childSnapshot.val().reason);
+
                  medicineName.appendChild(medicineNameNode);
                  medicineDosage.appendChild(medicineDosageNode);
                  medicineNote.appendChild(medicineNoteNode);
@@ -542,7 +548,7 @@ var childName
                         var childData = childSnapshot.val();
                         console.log(key);
                         console.log(childData);
-                  var visitDoctor = document.createElement("p");
+                  var visitDoctor = document.createElement("b");
                   var visitDate = document.createElement("p");
                   var visitNote = document.createElement("p");
                   var visitType = document.createElement("p");
@@ -580,7 +586,7 @@ var childName
                      var childData = childSnapshot.val();
                      console.log(key);
                      console.log(childData);
-               var operationDate = document.createElement("p");
+               var operationDate = document.createElement("b");
                var operationNote = document.createElement("p");
                var operationDoctor = document.createElement("p");
                var operationDateNode = document.createTextNode("Data: " + childSnapshot.val().date);

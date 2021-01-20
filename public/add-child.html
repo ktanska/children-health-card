@@ -10,6 +10,7 @@
     <title>Dodanie nowego dziecka</title>
 </head>
 <body>
+<div style="padding: 70px">
 <form id="addChildForm">
     <label class="" for="name">Imię: </label>
     <input type="text" label="name" id="name" style="display: block" required>
@@ -23,8 +24,9 @@
     <input type="text" label="height" id="height" style="display: block" required>
     <label class="" for="birth">Data urodzenia: </label>
     <input type="date" label="birth" id="birth" style="display: block" required>
-    <input type="submit" onclick="sendChildData()"/>
+    <input type="submit" class="btn" style="dispaly: block" onclick="sendChildData()"/>
 </form>
+</div>
 </body>
 <script>
 function sendChildData() {

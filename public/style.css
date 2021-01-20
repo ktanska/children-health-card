@@ -56,3 +56,13 @@ input, button {
   border: 1px solid #5d8ffc;
   cursor: pointer;
 }
+
+.btn{
+  color:#999;
+  background:rgba(0, 0, 0, 0.5);
+  padding:10px 20px;
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
